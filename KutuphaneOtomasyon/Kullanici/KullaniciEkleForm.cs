@@ -13,7 +13,7 @@ namespace KutuphaneOtomasyon.Kullanici
     
     public partial class KullaniciEkleForm : Form
     {
-        KutuphaneOtomasyonuEntities1 db = new KutuphaneOtomasyonuEntities1();
+        KutuphaneOtomasyonuEntities2 db = new KutuphaneOtomasyonuEntities2();
         public KullaniciEkleForm()
         {
             InitializeComponent();
@@ -40,7 +40,7 @@ namespace KutuphaneOtomasyon.Kullanici
             var kullanicilar = db.Kullanicilar.ToList();
             dataGridView1.DataSource = kullanicilar.ToList();
             //İd ve kayıtları gizledi
-            dataGridView1.Columns[0].Visible = false;
+           dataGridView1.Columns[0].Visible = false;
             
 
             //kalan kolonların isimleri düzenlendi

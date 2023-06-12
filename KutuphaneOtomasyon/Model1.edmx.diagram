@@ -4,15 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="703f3479735a4edca264d0ea15f98d5c" Name="Diagram1">
-        <EntityTypeShape EntityType="KutuphaneOtomasyonuModel.Kayitlar" Width="1.5" PointX="6.75" PointY="3.125" />
-        <EntityTypeShape EntityType="KutuphaneOtomasyonuModel.Kaynaklar" Width="1.5" PointX="10" PointY="1.125" />
-        <EntityTypeShape EntityType="KutuphaneOtomasyonuModel.Kullanicilar" Width="1.5" PointX="10.375" PointY="4.875" />
-        <EntityTypeShape EntityType="KutuphaneOtomasyonuModel.Personeller" Width="1.5" PointX="3.75" PointY="0.75" />
-        <EntityTypeShape EntityType="KutuphaneOtomasyonuModel.sysdiagrams" Width="1.5" PointX="0.625" PointY="5.125" />
-        <AssociationConnector Association="KutuphaneOtomasyonuModel.FK_Kayitlar_Kaynaklar" />
+      <Diagram DiagramId="0d41a83116404b0a8b098d814ef81e33" Name="Diagram1">
+        <EntityTypeShape EntityType="KutuphaneOtomasyonuModel.Kayitlar" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="KutuphaneOtomasyonuModel.Kaynaklar" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KutuphaneOtomasyonuModel.Personeller" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="KutuphaneOtomasyonuModel.sysdiagrams" Width="1.5" PointX="6.625" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="KutuphaneOtomasyonuModel.FK_Kayitlar_Kaynaklar" ManuallyRouted="false" />
+        <AssociationConnector Association="KutuphaneOtomasyonuModel.FK_Kayitlar_Personeller" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="KutuphaneOtomasyonuModel.Kullanicilar" Width="1.5" PointX="0.75" PointY="5" />
         <AssociationConnector Association="KutuphaneOtomasyonuModel.FK_Kayitlar_Kullanicilar" />
-        <AssociationConnector Association="KutuphaneOtomasyonuModel.FK_Kayitlar_Personeller" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

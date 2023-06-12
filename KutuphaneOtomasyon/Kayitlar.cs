@@ -23,7 +23,7 @@ namespace KutuphaneOtomasyon
         public int Personel_id { get; set; }
     
         public virtual Kaynaklar Kaynaklar { get; set; }
-        public virtual Kullanicilar Kullanicilar { get; set; }
         public virtual Personeller Personeller { get; set; }
+        public virtual Kullanicilar Kullanicilar { get; set; }
     }
 }

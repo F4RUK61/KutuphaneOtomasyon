@@ -12,7 +12,7 @@ namespace KutuphaneOtomasyon
 {
     public partial class Form1 : Form
     {
-        KutuphaneOtomasyonuEntities1 db = new KutuphaneOtomasyonuEntities1();
+        KutuphaneOtomasyonuEntities2 db = new KutuphaneOtomasyonuEntities2();
 
         
 
@@ -49,6 +49,11 @@ namespace KutuphaneOtomasyon
         }
 
         private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

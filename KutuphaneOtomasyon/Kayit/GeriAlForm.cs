@@ -16,7 +16,7 @@ namespace KutuphaneOtomasyon.Kayit
         {
             InitializeComponent();
         }
-        KutuphaneOtomasyonuEntities1 db = new KutuphaneOtomasyonuEntities1();
+        KutuphaneOtomasyonuEntities2 db = new KutuphaneOtomasyonuEntities2();
         private void GeriAlForm_Load(object sender, EventArgs e)
         {
             var kayitlar = db.Kayitlar.Where(x => x.durum == false).ToList();

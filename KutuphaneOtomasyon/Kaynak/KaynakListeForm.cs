@@ -12,7 +12,7 @@ namespace KutuphaneOtomasyon.Kaynak
 {
     public partial class KaynakListeForm : Form
     {
-        KutuphaneOtomasyonuEntities1 db = new KutuphaneOtomasyonuEntities1();
+        KutuphaneOtomasyonuEntities2 db = new KutuphaneOtomasyonuEntities2();
         public KaynakListeForm()
         {
             InitializeComponent();

@@ -12,7 +12,7 @@ namespace KutuphaneOtomasyon.Kullanici
 {
     public partial class KullaniciGuncelleForm : Form
     {
-        KutuphaneOtomasyonuEntities1 db = new KutuphaneOtomasyonuEntities1();
+        KutuphaneOtomasyonuEntities2 db = new KutuphaneOtomasyonuEntities2();
         public KullaniciGuncelleForm()
         {
             InitializeComponent();

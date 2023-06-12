@@ -16,7 +16,7 @@ namespace KutuphaneOtomasyon.Kullanici
         {
             InitializeComponent();
         }
-        KutuphaneOtomasyonuEntities1 db = new KutuphaneOtomasyonuEntities1();
+        KutuphaneOtomasyonuEntities2 db = new KutuphaneOtomasyonuEntities2();
         public void Listele()
         {
 
