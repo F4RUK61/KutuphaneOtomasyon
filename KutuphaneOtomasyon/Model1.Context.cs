@@ -25,10 +25,10 @@ namespace KutuphaneOtomasyon
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Personeller> Personeller { get; set; }
         public virtual DbSet<Kayitlar> Kayitlar { get; set; }
         public virtual DbSet<Kaynaklar> Kaynaklar { get; set; }
-        public virtual DbSet<Personeller> Personeller { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Kullanicilar> Kullanicilar { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }
