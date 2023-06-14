@@ -16,7 +16,7 @@ namespace KutuphaneOtomasyon.Kayit
         {
             InitializeComponent();
         }
-        KutuphaneOtomasyonuEntities2 db = new KutuphaneOtomasyonuEntities2();
+        KutuphaneOtomasyonuEntities3 db = new KutuphaneOtomasyonuEntities3();
         private void OduncForm_Load(object sender, EventArgs e)
         {
             //listeledik (kayıtları)
@@ -28,9 +28,9 @@ namespace KutuphaneOtomasyon.Kayit
             dataGridView2.DataSource = kaynakList.ToList();
 
             dataGridView1.Columns[6].Visible = false;
-            
-
-
+            dataGridView2.Columns[6].Visible = false;
+            dataGridView1.Columns[7].Visible = false;
+     
 
             dataGridView1.Columns[1].HeaderText = "Kullanıcı";
             dataGridView1.Columns[2].HeaderText = "Kaynak Ad";
@@ -70,7 +70,7 @@ namespace KutuphaneOtomasyon.Kayit
             var secilenKitap = db.Kaynaklar.Where(x => x.kaynak_id == secilenKitapId).FirstOrDefault();
 
             Kayitlar yeniKayit = new Kayitlar();
-            yeniKayit.kaynak_id = secilenKitap.kaynak_id;
+            yeniKayit.kitap_id = secilenKitap.kaynak_id;
             yeniKayit.kullanici_id = secilenKisi.kullanici_id;
             yeniKayit.alis_tarih = DateTime.Today;
             yeniKayit.son_tarih = DateTime.Today.AddDays(15);
@@ -82,5 +82,7 @@ namespace KutuphaneOtomasyon.Kayit
             dataGridView1.DataSource = kayitlist.ToList();
 
         }
+
+         
     }
 }

@@ -16,14 +16,12 @@ namespace KutuphaneOtomasyon
     {
         public int kayit_id { get; set; }
         public Nullable<int> kullanici_id { get; set; }
-        public Nullable<int> kaynak_id { get; set; }
+        public Nullable<int> kitap_id { get; set; }
         public Nullable<System.DateTime> alis_tarih { get; set; }
         public Nullable<System.DateTime> son_tarih { get; set; }
         public Nullable<bool> durum { get; set; }
-        public Nullable<int> Personel_id { get; set; }
     
         public virtual Kaynaklar Kaynaklar { get; set; }
         public virtual Kullanicilar Kullanicilar { get; set; }
-        public virtual Personeller Personeller { get; set; }
     }
 }

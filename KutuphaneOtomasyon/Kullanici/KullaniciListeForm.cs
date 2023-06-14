@@ -19,12 +19,13 @@ namespace KutuphaneOtomasyon
 
         public void Listele()
         {
-            KutuphaneOtomasyonuEntities2 db = new KutuphaneOtomasyonuEntities2();
+            KutuphaneOtomasyonuEntities3 db = new KutuphaneOtomasyonuEntities3();
             var kullanicilar = db.Kullanicilar.ToList();
             dataGridView1.DataSource = kullanicilar.ToList();
             //İd ve kayıtları gizledi
             dataGridView1.Columns[0].Visible = false;
             dataGridView1.Columns[7].Visible = false;
+            
 
 
             //kalan kolonların isimleri düzenlendi

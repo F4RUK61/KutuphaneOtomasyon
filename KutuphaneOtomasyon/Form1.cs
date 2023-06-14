@@ -12,7 +12,7 @@ namespace KutuphaneOtomasyon
 {
     public partial class Form1 : Form
     {
-        KutuphaneOtomasyonuEntities2 db = new KutuphaneOtomasyonuEntities2();
+        KutuphaneOtomasyonuEntities3 db = new KutuphaneOtomasyonuEntities3();
 
         
 

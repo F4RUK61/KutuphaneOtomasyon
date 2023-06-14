@@ -16,7 +16,7 @@ namespace KutuphaneOtomasyon
     public partial class IslemPaneli : Form
     {
 
-        KutuphaneOtomasyonuEntities2 db = new KutuphaneOtomasyonuEntities2();
+        KutuphaneOtomasyonuEntities3 db = new KutuphaneOtomasyonuEntities3();
         public IslemPaneli()
         {
             InitializeComponent();

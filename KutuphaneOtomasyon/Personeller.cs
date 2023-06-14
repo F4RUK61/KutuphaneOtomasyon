@@ -14,12 +14,6 @@ namespace KutuphaneOtomasyon
     
     public partial class Personeller
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Personeller()
-        {
-            this.Kayitlar = new HashSet<Kayitlar>();
-        }
-    
         public int Personel_id { get; set; }
         public string Personel_ad { get; set; }
         public string Personel_soyad { get; set; }
@@ -28,8 +22,5 @@ namespace KutuphaneOtomasyon
         public string Personel_mail { get; set; }
         public string Persone_kullaniciAd { get; set; }
         public string Personel_sifre { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Kayitlar> Kayitlar { get; set; }
     }
 }
