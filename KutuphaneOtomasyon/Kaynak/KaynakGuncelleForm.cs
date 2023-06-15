@@ -17,7 +17,7 @@ namespace KutuphaneOtomasyon.Kaynak
         {
             InitializeComponent();
         }
-        KutuphaneOtomasyonuEntities3 db = new KutuphaneOtomasyonuEntities3();
+        KutuphaneOtomasyonuEntities5 db = new KutuphaneOtomasyonuEntities5();
         private void KaynakGuncelleForm_Load(object sender, EventArgs e)
         {
             var kaynaklar = db.Kaynaklar.ToList();

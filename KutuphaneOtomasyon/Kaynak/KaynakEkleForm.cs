@@ -19,7 +19,7 @@ namespace KutuphaneOtomasyon.Kaynak
         {
             InitializeComponent();
         }
-        KutuphaneOtomasyonuEntities3 db = new KutuphaneOtomasyonuEntities3();
+        KutuphaneOtomasyonuEntities5 db = new KutuphaneOtomasyonuEntities5();
         private void button1_Click(object sender, EventArgs e)
         {
             // Kaynaklar nesnesini önceden tanımlayın
@@ -64,6 +64,11 @@ namespace KutuphaneOtomasyon.Kaynak
         }
 
         private void KaynakEkleForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void KaynakEkleForm_Load_1(object sender, EventArgs e)
         {
 
         }

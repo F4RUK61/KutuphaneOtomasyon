@@ -18,7 +18,7 @@ namespace KutuphaneOtomasyon.Kayit
         {
             InitializeComponent();
         }
-        KutuphaneOtomasyonuEntities3 db = new KutuphaneOtomasyonuEntities3();
+        KutuphaneOtomasyonuEntities5 db = new KutuphaneOtomasyonuEntities5();
         private void OduncForm_Load(object sender, EventArgs e)
         {
             //listeledik (kayıtları)
@@ -86,21 +86,24 @@ namespace KutuphaneOtomasyon.Kayit
                 command.Parameters.AddWithValue("@alis_tarih", yeniKayit.alis_tarih);
                 command.Parameters.AddWithValue("@son_tarih", yeniKayit.son_tarih);
                 command.Parameters.AddWithValue("@durum", yeniKayit.durum);
-                
+
+
+                yeniKayit.kitap_id = secilenKitap.kaynak_id;
+                yeniKayit.kullanici_id = secilenKisi.kullanici_id;
+                yeniKayit.alis_tarih = DateTime.Today;
+                yeniKayit.son_tarih = DateTime.Today.AddDays(15);
+                yeniKayit.durum = false;
+                db.Kayitlar.Add(yeniKayit);
+                db.SaveChanges();
+
+                var kayitlist = db.Kayitlar.ToList();
+                dataGridView1.DataSource = kayitlist.ToList();
             }
 
 
             
-            yeniKayit.kitap_id = secilenKitap.kaynak_id;
-            yeniKayit.kullanici_id = secilenKisi.kullanici_id;
-            yeniKayit.alis_tarih = DateTime.Today;
-            yeniKayit.son_tarih = DateTime.Today.AddDays(15);
-            yeniKayit.durum = false;
-            db.Kayitlar.Add(yeniKayit);
-            db.SaveChanges();
 
-            var kayitlist = db.Kayitlar.ToList();
-            dataGridView1.DataSource = kayitlist.ToList();
+
 
         }
 

@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace KutuphaneOtomasyon
 {
     public partial class Form1 : Form
     {
-        KutuphaneOtomasyonuEntities3 db = new KutuphaneOtomasyonuEntities3();
+        KutuphaneOtomasyonuEntities5 db = new KutuphaneOtomasyonuEntities5();
 
         
 

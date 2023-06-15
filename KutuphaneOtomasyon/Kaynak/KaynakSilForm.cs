@@ -37,7 +37,7 @@ namespace KutuphaneOtomasyon.Kaynak
             dataGridView1.DataSource = kaynaklar.ToList();
 
         }
-        KutuphaneOtomasyonuEntities3 db = new KutuphaneOtomasyonuEntities3();
+        KutuphaneOtomasyonuEntities5 db = new KutuphaneOtomasyonuEntities5();
         private void KaynakSilForm_Load(object sender, EventArgs e)
         {
             var kaynaklar = db.Kaynaklar.ToList();

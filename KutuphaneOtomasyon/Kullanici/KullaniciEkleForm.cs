@@ -15,7 +15,7 @@ namespace KutuphaneOtomasyon.Kullanici
     
     public partial class KullaniciEkleForm : Form
     {
-        KutuphaneOtomasyonuEntities3 db = new KutuphaneOtomasyonuEntities3();
+        KutuphaneOtomasyonuEntities5 db = new KutuphaneOtomasyonuEntities5();
         public KullaniciEkleForm()
         {
             InitializeComponent();
