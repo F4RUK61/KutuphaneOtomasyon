@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace KutuphaneOtomasyon.Kullanici
 {
@@ -43,11 +44,23 @@ namespace KutuphaneOtomasyon.Kullanici
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             int secilenId = Convert.ToInt16(dataGridView1.CurrentRow.Cells[0].Value);
             var kullanici = db.Kullanicilar.Where(x => x.kullanici_id == secilenId).FirstOrDefault();
+            // Depolama prosedürünü çağırmak için SQL bağlantısını kullan
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-F96E4NN\SQLEXPRESS;Initial Catalog=KutuphaneOtomasyonu;Integrated Security=True")) // connection_string'i uygun şekilde değiştirin
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("sp_DeleteKullanici", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@kullanici_id", secilenId);
+                command.ExecuteNonQuery();
+            }
             db.Kullanicilar.Remove(kullanici);
-            db.SaveChanges();
+           
             Listele();
         }
+
     }
+
 }

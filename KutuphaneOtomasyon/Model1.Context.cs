@@ -12,6 +12,8 @@ namespace KutuphaneOtomasyon
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class KutuphaneOtomasyonuEntities3 : DbContext
     {
@@ -30,5 +32,279 @@ namespace KutuphaneOtomasyon
         public virtual DbSet<Kullanicilar> Kullanicilar { get; set; }
         public virtual DbSet<Personeller> Personeller { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+    
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_DeleteKaynaklar(Nullable<int> kaynak_id)
+        {
+            var kaynak_idParameter = kaynak_id.HasValue ?
+                new ObjectParameter("kaynak_id", kaynak_id) :
+                new ObjectParameter("kaynak_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_DeleteKaynaklar", kaynak_idParameter);
+        }
+    
+        public virtual int sp_DeleteKullanici(Nullable<int> kullanici_id)
+        {
+            var kullanici_idParameter = kullanici_id.HasValue ?
+                new ObjectParameter("kullanici_id", kullanici_id) :
+                new ObjectParameter("kullanici_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_DeleteKullanici", kullanici_idParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_InsertKayit(Nullable<int> kayit_id, Nullable<int> kullanici_id, Nullable<int> kitap_id, Nullable<System.DateTime> alis_tarih, Nullable<System.DateTime> son_tarih, Nullable<bool> durum)
+        {
+            var kayit_idParameter = kayit_id.HasValue ?
+                new ObjectParameter("kayit_id", kayit_id) :
+                new ObjectParameter("kayit_id", typeof(int));
+    
+            var kullanici_idParameter = kullanici_id.HasValue ?
+                new ObjectParameter("kullanici_id", kullanici_id) :
+                new ObjectParameter("kullanici_id", typeof(int));
+    
+            var kitap_idParameter = kitap_id.HasValue ?
+                new ObjectParameter("kitap_id", kitap_id) :
+                new ObjectParameter("kitap_id", typeof(int));
+    
+            var alis_tarihParameter = alis_tarih.HasValue ?
+                new ObjectParameter("alis_tarih", alis_tarih) :
+                new ObjectParameter("alis_tarih", typeof(System.DateTime));
+    
+            var son_tarihParameter = son_tarih.HasValue ?
+                new ObjectParameter("son_tarih", son_tarih) :
+                new ObjectParameter("son_tarih", typeof(System.DateTime));
+    
+            var durumParameter = durum.HasValue ?
+                new ObjectParameter("durum", durum) :
+                new ObjectParameter("durum", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertKayit", kayit_idParameter, kullanici_idParameter, kitap_idParameter, alis_tarihParameter, son_tarihParameter, durumParameter);
+        }
+    
+        public virtual int sp_InsertKaynak(Nullable<int> kaynak_id, string kaynak_ad, string kaynak_yazar, string kaynak_yayıncı, Nullable<int> kaynak_sayfasayisi, Nullable<System.DateTime> kaynak_basımtarihi)
+        {
+            var kaynak_idParameter = kaynak_id.HasValue ?
+                new ObjectParameter("kaynak_id", kaynak_id) :
+                new ObjectParameter("kaynak_id", typeof(int));
+    
+            var kaynak_adParameter = kaynak_ad != null ?
+                new ObjectParameter("kaynak_ad", kaynak_ad) :
+                new ObjectParameter("kaynak_ad", typeof(string));
+    
+            var kaynak_yazarParameter = kaynak_yazar != null ?
+                new ObjectParameter("kaynak_yazar", kaynak_yazar) :
+                new ObjectParameter("kaynak_yazar", typeof(string));
+    
+            var kaynak_yayıncıParameter = kaynak_yayıncı != null ?
+                new ObjectParameter("kaynak_yayıncı", kaynak_yayıncı) :
+                new ObjectParameter("kaynak_yayıncı", typeof(string));
+    
+            var kaynak_sayfasayisiParameter = kaynak_sayfasayisi.HasValue ?
+                new ObjectParameter("kaynak_sayfasayisi", kaynak_sayfasayisi) :
+                new ObjectParameter("kaynak_sayfasayisi", typeof(int));
+    
+            var kaynak_basımtarihiParameter = kaynak_basımtarihi.HasValue ?
+                new ObjectParameter("kaynak_basımtarihi", kaynak_basımtarihi) :
+                new ObjectParameter("kaynak_basımtarihi", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertKaynak", kaynak_idParameter, kaynak_adParameter, kaynak_yazarParameter, kaynak_yayıncıParameter, kaynak_sayfasayisiParameter, kaynak_basımtarihiParameter);
+        }
+    
+        public virtual int sp_InsertKullanici(Nullable<int> kullanici_id, string kullanici_ad, string kullanici_soyad, string kullanici_tc, string kullanici_mail, string kullanici_tel, Nullable<double> kullanici_ceza)
+        {
+            var kullanici_idParameter = kullanici_id.HasValue ?
+                new ObjectParameter("kullanici_id", kullanici_id) :
+                new ObjectParameter("kullanici_id", typeof(int));
+    
+            var kullanici_adParameter = kullanici_ad != null ?
+                new ObjectParameter("kullanici_ad", kullanici_ad) :
+                new ObjectParameter("kullanici_ad", typeof(string));
+    
+            var kullanici_soyadParameter = kullanici_soyad != null ?
+                new ObjectParameter("kullanici_soyad", kullanici_soyad) :
+                new ObjectParameter("kullanici_soyad", typeof(string));
+    
+            var kullanici_tcParameter = kullanici_tc != null ?
+                new ObjectParameter("kullanici_tc", kullanici_tc) :
+                new ObjectParameter("kullanici_tc", typeof(string));
+    
+            var kullanici_mailParameter = kullanici_mail != null ?
+                new ObjectParameter("kullanici_mail", kullanici_mail) :
+                new ObjectParameter("kullanici_mail", typeof(string));
+    
+            var kullanici_telParameter = kullanici_tel != null ?
+                new ObjectParameter("kullanici_tel", kullanici_tel) :
+                new ObjectParameter("kullanici_tel", typeof(string));
+    
+            var kullanici_cezaParameter = kullanici_ceza.HasValue ?
+                new ObjectParameter("kullanici_ceza", kullanici_ceza) :
+                new ObjectParameter("kullanici_ceza", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InsertKullanici", kullanici_idParameter, kullanici_adParameter, kullanici_soyadParameter, kullanici_tcParameter, kullanici_mailParameter, kullanici_telParameter, kullanici_cezaParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_UpdateKaynaklar(Nullable<int> kaynak_id, string kaynak_ad, string kaynak_yazar, string kaynak_yayıncı, Nullable<int> kaynak_sayfasayisi, Nullable<System.DateTime> kaynak_basımtarihi)
+        {
+            var kaynak_idParameter = kaynak_id.HasValue ?
+                new ObjectParameter("kaynak_id", kaynak_id) :
+                new ObjectParameter("kaynak_id", typeof(int));
+    
+            var kaynak_adParameter = kaynak_ad != null ?
+                new ObjectParameter("kaynak_ad", kaynak_ad) :
+                new ObjectParameter("kaynak_ad", typeof(string));
+    
+            var kaynak_yazarParameter = kaynak_yazar != null ?
+                new ObjectParameter("kaynak_yazar", kaynak_yazar) :
+                new ObjectParameter("kaynak_yazar", typeof(string));
+    
+            var kaynak_yayıncıParameter = kaynak_yayıncı != null ?
+                new ObjectParameter("kaynak_yayıncı", kaynak_yayıncı) :
+                new ObjectParameter("kaynak_yayıncı", typeof(string));
+    
+            var kaynak_sayfasayisiParameter = kaynak_sayfasayisi.HasValue ?
+                new ObjectParameter("kaynak_sayfasayisi", kaynak_sayfasayisi) :
+                new ObjectParameter("kaynak_sayfasayisi", typeof(int));
+    
+            var kaynak_basımtarihiParameter = kaynak_basımtarihi.HasValue ?
+                new ObjectParameter("kaynak_basımtarihi", kaynak_basımtarihi) :
+                new ObjectParameter("kaynak_basımtarihi", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_UpdateKaynaklar", kaynak_idParameter, kaynak_adParameter, kaynak_yazarParameter, kaynak_yayıncıParameter, kaynak_sayfasayisiParameter, kaynak_basımtarihiParameter);
+        }
+    
+        public virtual int sp_UpdateKullanici(Nullable<int> kullanici_id, string kullanici_ad, string kullanici_soyad, string kullanici_tc, string kullanici_mail, string kullanici_tel, Nullable<double> kullanici_ceza)
+        {
+            var kullanici_idParameter = kullanici_id.HasValue ?
+                new ObjectParameter("kullanici_id", kullanici_id) :
+                new ObjectParameter("kullanici_id", typeof(int));
+    
+            var kullanici_adParameter = kullanici_ad != null ?
+                new ObjectParameter("kullanici_ad", kullanici_ad) :
+                new ObjectParameter("kullanici_ad", typeof(string));
+    
+            var kullanici_soyadParameter = kullanici_soyad != null ?
+                new ObjectParameter("kullanici_soyad", kullanici_soyad) :
+                new ObjectParameter("kullanici_soyad", typeof(string));
+    
+            var kullanici_tcParameter = kullanici_tc != null ?
+                new ObjectParameter("kullanici_tc", kullanici_tc) :
+                new ObjectParameter("kullanici_tc", typeof(string));
+    
+            var kullanici_mailParameter = kullanici_mail != null ?
+                new ObjectParameter("kullanici_mail", kullanici_mail) :
+                new ObjectParameter("kullanici_mail", typeof(string));
+    
+            var kullanici_telParameter = kullanici_tel != null ?
+                new ObjectParameter("kullanici_tel", kullanici_tel) :
+                new ObjectParameter("kullanici_tel", typeof(string));
+    
+            var kullanici_cezaParameter = kullanici_ceza.HasValue ?
+                new ObjectParameter("kullanici_ceza", kullanici_ceza) :
+                new ObjectParameter("kullanici_ceza", typeof(double));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_UpdateKullanici", kullanici_idParameter, kullanici_adParameter, kullanici_soyadParameter, kullanici_tcParameter, kullanici_mailParameter, kullanici_telParameter, kullanici_cezaParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace KutuphaneOtomasyon.Kaynak
 {
@@ -21,23 +22,40 @@ namespace KutuphaneOtomasyon.Kaynak
         KutuphaneOtomasyonuEntities3 db = new KutuphaneOtomasyonuEntities3();
         private void button1_Click(object sender, EventArgs e)
         {
-            Kaynaklar kaynanklar = new Kaynaklar();
-            kaynanklar.kaynak_ad = adKaynaktxt.Text;
-            kaynanklar.kaynak_yazar = yazarKaynaktxt.Text;
-            kaynanklar.kaynak_yayıncı = yayıncıKaynaktxt.Text;
-            kaynanklar.kaynak_sayfasayisi=Convert.ToInt16(numericUpDown1.Value);
-            kaynanklar.kaynak_basımtarihi = dateTimePicker1.Value;
-            db.Kaynaklar.Add(kaynanklar);
+            // Kaynaklar nesnesini önceden tanımlayın
+            Kaynaklar kaynaklar = new Kaynaklar();
+
+            kaynaklar.kaynak_ad = adKaynaktxt.Text;
+            kaynaklar.kaynak_yazar = yazarKaynaktxt.Text;
+            kaynaklar.kaynak_yayıncı = yayıncıKaynaktxt.Text;
+            kaynaklar.kaynak_sayfasayisi = Convert.ToInt32(numericUpDown1.Value);
+            kaynaklar.kaynak_basımtarihi = dateTimePicker1.Value;
+
+            db.Kaynaklar.Add(kaynaklar);
+
+            // Depolama prosedürünü çağırmak için SQL bağlantısını kullan
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-F96E4NN\SQLEXPRESS;Initial Catalog=KutuphaneOtomasyonu;Integrated Security=True")) // connection_string'i uygun şekilde değiştirin
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("sp_InsertKaynak", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@kaynak_ad", kaynaklar.kaynak_ad);
+                command.Parameters.AddWithValue("@kaynak_yazar", kaynaklar.kaynak_yazar);
+                command.Parameters.AddWithValue("@kaynak_yayıncı", kaynaklar.kaynak_yayıncı);
+                command.Parameters.AddWithValue("@kaynak_sayfasayisi", kaynaklar.kaynak_sayfasayisi);
+                command.Parameters.AddWithValue("@kaynak_basımtarihi", kaynaklar.kaynak_basımtarihi);
+             
+            }
+
             db.SaveChanges();
 
             var kliste = db.Kaynaklar.ToList();
             dataGridView1.DataSource = kliste.ToList();
 
-            //İd ve kayıtları gizledi
+            // İd ve kayıtları gizledi
             dataGridView1.Columns[0].Visible = false;
-            
 
-            //kalan kolonların isimleri düzenlendi
+            // Kalan kolonların isimleri düzenlendi
             dataGridView1.Columns[1].HeaderText = "Kaynak Adı";
             dataGridView1.Columns[2].HeaderText = "Yazar";
             dataGridView1.Columns[3].HeaderText = "Yayıncı";

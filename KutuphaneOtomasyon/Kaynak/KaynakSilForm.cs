@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace KutuphaneOtomasyon.Kaynak
 {
@@ -21,6 +22,15 @@ namespace KutuphaneOtomasyon.Kaynak
         {
             int secilenId=Convert.ToInt16(dataGridView1.CurrentRow.Cells[0].Value);
             var silinenKaynak = db.Kaynaklar.Where(x => x.kaynak_id == secilenId).FirstOrDefault();
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-F96E4NN\SQLEXPRESS;Initial Catalog=KutuphaneOtomasyonu;Integrated Security=True")) // connection_string'i uygun şekilde değiştirin
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("sp_DeleteKaynaklar", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@kaynak_id", secilenId);
+               
+            }
+
             db.Kaynaklar.Remove(silinenKaynak);
             db.SaveChanges();
             var kaynaklar = db.Kaynaklar.ToList();

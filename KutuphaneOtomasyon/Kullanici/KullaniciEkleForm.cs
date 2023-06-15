@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+
 
 namespace KutuphaneOtomasyon.Kullanici
 {
@@ -33,6 +35,26 @@ namespace KutuphaneOtomasyon.Kullanici
             db.SaveChanges();
             Listele();
 
+        }
+        public void sp_InsertKullanici(int kullanici_id, string kullanici_ad, string kullanici_soyad, string kullanici_tc, string kullanici_mail, string kullanici_tel, float kullanici_ceza)
+        {
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-F96E4NN\SQLEXPRESS;Initial Catalog=KutuphaneOtomasyonu;Integrated Security=True"))
+            {
+                SqlCommand command = new SqlCommand("sp_InsertKullanici", connection);
+                command.CommandType = CommandType.StoredProcedure;
+
+                command.Parameters.AddWithValue("@kullanici_id", kullanici_id);
+                command.Parameters.AddWithValue("@kullanici_ad", kullanici_ad);
+                command.Parameters.AddWithValue("@kullanici_soyad", kullanici_soyad);
+                command.Parameters.AddWithValue("@kullanici_tc", kullanici_tc);
+                command.Parameters.AddWithValue("@kullanici_mail", kullanici_mail);
+                command.Parameters.AddWithValue("@kullanici_tel", kullanici_tel);
+                command.Parameters.AddWithValue("@kullanici_ceza", kullanici_ceza);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
         }
         public void Listele()
         {

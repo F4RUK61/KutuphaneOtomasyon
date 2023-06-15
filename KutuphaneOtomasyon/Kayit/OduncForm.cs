@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
+
 
 namespace KutuphaneOtomasyon.Kayit
 {
@@ -70,6 +72,25 @@ namespace KutuphaneOtomasyon.Kayit
             var secilenKitap = db.Kaynaklar.Where(x => x.kaynak_id == secilenKitapId).FirstOrDefault();
 
             Kayitlar yeniKayit = new Kayitlar();
+
+
+
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-F96E4NN\SQLEXPRESS;Initial Catalog=KutuphaneOtomasyonu;Integrated Security=True")) // connection_string'i uygun şekilde değiştirin
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("sp_InsertKayit", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@kayit_id", yeniKayit.kayit_id);
+                command.Parameters.AddWithValue("@kullanici_id", yeniKayit.kullanici_id);
+                command.Parameters.AddWithValue("@kitap_id", yeniKayit.kitap_id);
+                command.Parameters.AddWithValue("@alis_tarih", yeniKayit.alis_tarih);
+                command.Parameters.AddWithValue("@son_tarih", yeniKayit.son_tarih);
+                command.Parameters.AddWithValue("@durum", yeniKayit.durum);
+                
+            }
+
+
+            
             yeniKayit.kitap_id = secilenKitap.kaynak_id;
             yeniKayit.kullanici_id = secilenKisi.kullanici_id;
             yeniKayit.alis_tarih = DateTime.Today;

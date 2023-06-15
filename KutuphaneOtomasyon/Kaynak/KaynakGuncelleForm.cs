@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace KutuphaneOtomasyon.Kaynak
 {
@@ -49,6 +50,21 @@ namespace KutuphaneOtomasyon.Kaynak
         {
             int secilenKaynak = Convert.ToInt16(dataGridView1.CurrentRow.Cells[0].Value);
             var guncellenecekKaynak = db.Kaynaklar.Where(x => x.kaynak_id == secilenKaynak).FirstOrDefault();
+
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-F96E4NN\SQLEXPRESS;Initial Catalog=KutuphaneOtomasyonu;Integrated Security=True")) // connection_string'i uygun şekilde değiştirin
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("sp_UpdateKaynaklar", connection);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@kaynak_id", guncellenecekKaynak.kaynak_id);
+                command.Parameters.AddWithValue("@kaynak_ad", guncellenecekKaynak.kaynak_ad);
+                command.Parameters.AddWithValue("@kaynak_yazar", guncellenecekKaynak.kaynak_yazar);
+                command.Parameters.AddWithValue("@kaynak_yayıncı", guncellenecekKaynak.kaynak_yayıncı);
+                command.Parameters.AddWithValue("@kaynak_sayfasayisi", guncellenecekKaynak.kaynak_sayfasayisi);
+                command.Parameters.AddWithValue("@kaynak_basımtarihi", guncellenecekKaynak.kaynak_basımtarihi);
+                
+            }
+            
             guncellenecekKaynak.kaynak_ad = adKaynaktxt.Text;
             guncellenecekKaynak.kaynak_yazar = yazarKaynaktxt.Text;
             guncellenecekKaynak.kaynak_yayıncı = yayıncıKaynaktxt.Text;
